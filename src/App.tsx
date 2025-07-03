@@ -5,7 +5,10 @@ import { useUpvote } from '@/hooks/use-upvote';
 import { MAX_LISTS } from '@/constants/upvote';
 
 function UpvoteApp() {
+  // Hook with context provider for functions to interact with the upvote lists being passed through as props as per instructions.
   const { state, toggleUpvoteList, addUpvoteToList, createNewList } = useUpvote();
+
+  // Can move this to a separate component if needed but for simplicity, keeping it here.
 
   return (
     <main className="container mx-auto p-8">

@@ -1,69 +1,92 @@
-# React + TypeScript + Vite
+# Scrawlr Upvote Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application demonstrating a reusable upvote system with multiple independent lists and state persistence.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Multiple independent upvote lists
+- Maximum of 10 lists with 5 upvotes each
+- Persistent state using localStorage
+- Responsive layout
+- Test coverage
+- Built with React + TypeScript + Vite
+- Modern styling with shadcn/ui and Tailwind CSS
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18 or higher recommended)
+- pnpm (v8 or higher)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+
+```bash
+git clone git@github.com:kvntma/scrawlr-demo.git
+cd scrawlr-demo
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
 ```
+
+### Running the Application
+
+Start the development server:
+
+```bash
+pnpm dev
+```
+
+The application will be available at `http://localhost:5173`
+
+The project uses Vitest for testing. Available test commands:
+
+- Run tests in watch mode:
+
+```bash
+pnpm test
+```
+
+- Generate test coverage report:
+
+```bash
+pnpm test:coverage
+```
+
+## Usage Instructions
+
+1. The application displays multiple upvote lists - maximum of 10! can be changed inside constants!
+2. Each list can contain up to 50 upvote buttons - can be changed inside constants!
+3. Click the "+" button to add a new upvote to a list
+4. Click an upvote to toggle its state:
+   - Default state: Gray background (#F4F6F8) with dark arrow (#343A40)
+   - Selected state: Light blue background (#E5E8FD) with blue arrow (#253CF2)
+5. Each list maintains its own state independently - clicking one arrow will change the state for the whole list.
+
+- Adding to the list will also match the list state.
+
+6. States persist across page refreshes
+
+## Project Structure
+
+```
+src/
+  ├── components/     # Reusable UI components
+  ├── contexts/       # React context for state management
+  ├── hooks/         # Custom hooks including useUpvote
+  ├── types/         # TypeScript type definitions
+  └── constants/     # Application constants
+```
+
+## Technical Details
+
+- State Management: React Context with localStorage persistence
+- Styling: Tailwind CSS with shadcn/ui components
+- Testing: Vitest with React Testing Library
+- Build Tool: Vite
+- Type Safety: TypeScript
